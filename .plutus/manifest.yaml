@@ -1,0 +1,91 @@
+schema_version: '2.0'
+repo:
+  name: ProtoGrid
+  primary_language: python
+
+env:
+  base: python
+  python_version: '3.12'
+  manager: pip
+  install_project: true
+  os_packages: []
+  # The engine is a path dependency: a plutus-simulator checkout on branch
+  # rivf26, installed editable (see README, "Regenerate").
+
+secrets: []
+
+data_sources:
+  processed:
+    # Frozen minimal slices, committed. Provenance, row counts, sizes and
+    # sha256 per file: data/manifest/<window>/DATA-MANIFEST.md
+    - kind: repo
+      expected_layout:
+        - data/tick/w2022_10/quote_matched.parquet
+        - data/tick/w2022_10/quote_askprice.parquet
+        - data/tick/w2022_10/quote_bidprice.parquet
+        - data/band/w2022_10/quote_close.parquet
+        - data/band/w2022_10/quote_ceil.parquet
+        - data/band/w2022_10/quote_floor.parquet
+        - data/band/w2022_10/quote_reference.parquet
+        - data/band/w2022_10/quote_ticker.parquet
+        - data/tick/w2021_11/quote_matched.parquet
+        - data/tick/w2021_11/quote_askprice.parquet
+        - data/tick/w2021_11/quote_bidprice.parquet
+        - data/band/w2021_11/quote_close.parquet
+        - data/band/w2021_11/quote_ceil.parquet
+        - data/band/w2021_11/quote_floor.parquet
+        - data/band/w2021_11/quote_reference.parquet
+        - data/band/w2021_11/quote_ticker.parquet
+      satisfies: [data_preparation]
+  raw: []
+
+steps:
+  - id: data_preparation
+    nine_step: step_2_data_preparation
+    required: true
+    network: none
+    timeout_seconds: 60
+    verification_mode: artifact_check
+    inputs: []
+    outputs:
+      - data/tick/w2022_10/quote_matched.parquet
+      - data/tick/w2021_11/quote_matched.parquet
+
+  - id: in_sample_backtest
+    nine_step: step_4_in_sample
+    required: true
+    network: none
+    timeout_seconds: 600
+    command: "pytest -q tests/test_regression_baseline.py"
+    inputs: []
+    outputs: []
+    depends_on: [data_preparation]
+
+  - id: grid_anchor
+    nine_step: null
+    required: true
+    network: none
+    timeout_seconds: 3600
+    command: "pg-anchor"
+    inputs: []
+    outputs:
+      - result/grid_anchor/w2022_10.json
+      - result/grid_anchor/w2021_11.json
+    depends_on: [data_preparation]
+
+expected:
+  - step_id: grid_anchor
+    artifacts:
+      - path: result/grid_anchor/w2022_10.json
+        compare: json_numeric_tolerance
+      - path: result/grid_anchor/w2021_11.json
+        compare: json_numeric_tolerance
+
+nine_step_coverage:
+  step_1_hypothesis: {present: true, section: "docs/hypothesis.md"}
+  step_2_data_preparation: {present: true, section: "README: Data and windows"}
+  step_3_forming_set_of_rules: {present: true, section: "src/proto_grid/strategy.py"}
+  step_4_in_sample: {present: true, section: "README: Results (naive arm)"}
+  step_5_optimization: {present: false, section: null}
+  step_6_out_of_sample: {present: false, section: null}
+  step_7_paper_trading: {present: false, section: null}

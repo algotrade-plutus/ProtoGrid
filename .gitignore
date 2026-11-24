@@ -1,0 +1,22 @@
+__pycache__/
+*.pyc
+.DS_Store
+.venv/
+venv/
+.pytest_cache/
+.idea/
+# credentials: never committed
+.env
+*.env
+cred/
+*credential*
+*secret*
+# plutus-verify ephemera
+.plutus/run/
+.plutus/results/
+.plutus/cache/
+.plutus/build/
+.plutus-venv/
+
+# derived CSV copies of the tick slice for TickSource
+data/.cache/

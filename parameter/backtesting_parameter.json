@@ -1,0 +1,14 @@
+{
+  "tickers": ["SSI", "TCH", "POW"],
+  "capital_vnd": 2000000000,
+  "n_rungs": 8,
+  "assumed_round_trip_cost": 0.004,
+  "assumed_buy_cost": 0.0015,
+  "assumed_sell_cost": 0.0025,
+  "delta_margin": 3,
+  "continuous_windows": [["09:15:00", "11:30:00"], ["13:00:00", "14:30:00"]],
+  "windows": {
+    "w2022_10": {"start": "2022-10-03", "end": "2022-11-30"},
+    "w2021_11": {"start": "2021-11-01", "end": "2021-12-31"}
+  }
+}

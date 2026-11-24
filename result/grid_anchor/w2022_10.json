@@ -1,0 +1,158 @@
+{
+  "window": "w2022_10",
+  "period": {
+    "start": "2022-10-03",
+    "end": "2022-11-30"
+  },
+  "tickers": [
+    "SSI",
+    "TCH",
+    "POW"
+  ],
+  "plutus_simulator_commit": "b62e16331e73344de1cfab9734c30cb24f2fdf58",
+  "naive": {
+    "fills": 136,
+    "buy_fills": 75,
+    "sell_fills": 61,
+    "round_trips": 61,
+    "traded_value_vnd": 11280800000,
+    "costs_vnd": 22016755,
+    "initial_equity_vnd": 2000000000,
+    "final_equity_vnd": 1952005245,
+    "fills_by_ticker": {
+      "POW": 36,
+      "SSI": 46,
+      "TCH": 54
+    },
+    "final_holdings": {
+      "POW": 27700,
+      "SSI": 8500,
+      "TCH": 62300
+    },
+    "sessions": 43,
+    "hpr": -0.023997,
+    "max_drawdown": -0.292439,
+    "sharpe": 0.053
+  },
+  "faithful": {
+    "fills": 62,
+    "buy_fills": 37,
+    "sell_fills": 25,
+    "round_trips": 25,
+    "traded_value_vnd": 5145255000,
+    "costs_vnd": 11197127,
+    "initial_equity_vnd": 2000000000,
+    "final_equity_vnd": 1947020873,
+    "fills_by_ticker": {
+      "POW": 20,
+      "SSI": 22,
+      "TCH": 20
+    },
+    "final_holdings": {
+      "POW": 27700,
+      "SSI": 8500,
+      "TCH": 47200
+    },
+    "sessions": 43,
+    "hpr": -0.02649,
+    "max_drawdown": -0.287286,
+    "sharpe": 0.0031
+  },
+  "tier1": {
+    "refusals_by_rule": {
+      "band_limit": 828,
+      "insufficient_cash": 28,
+      "unsettled_holding": 58
+    },
+    "refusals_by_rule_and_side": {
+      "band_limit:buy": 71,
+      "band_limit:sell": 757,
+      "insufficient_cash:buy": 28,
+      "unsettled_holding:sell": 58
+    },
+    "band_limit_refusals": 828,
+    "tick_grid_refusals": 0,
+    "round_lot_refusals": 0,
+    "insufficient_cash_refusals": 28,
+    "unsettled_holding_refusals": 58,
+    "indeterminate_at_submit": {},
+    "t2_locked_rebuys": 28,
+    "t2_unsettled_sells": 58,
+    "insufficient_cash_not_t2": 0,
+    "band_edge_evaluations": 1,
+    "band_lock_no_fills": 0,
+    "fill_evaluations": {
+      "fill": 62,
+      "no_fill": 261588
+    },
+    "fill_evidence": {
+      "touched_at_limit": 43,
+      "traded_through": 19
+    },
+    "session_events": {
+      "accepted": 180,
+      "expired": 118,
+      "filled": 62,
+      "rejected": 914,
+      "settlement_credited": 53
+    },
+    "indeterminate_report": {
+      "evaluations": 261650,
+      "indeterminate": 0,
+      "by_field": {},
+      "by_rule": {},
+      "silent_ignorance": {
+        "fill.decided_without.book_size": 62,
+        "fill.decided_without.high": 62,
+        "fill.decided_without.low": 62,
+        "fill.decided_without.open": 62,
+        "fill.decided_without.volume": 62
+      },
+      "exercised": {
+        "rule.legal_order_types": 1094,
+        "rule.max_order_size": 1094,
+        "rule.tick_size": 1094,
+        "rule.admits": 1094,
+        "funding.securities_cash": 266,
+        "fill_policy": 261650
+      },
+      "unexercised": []
+    }
+  },
+  "gap": {
+    "fill_ratio_f_over_n": 0.4559,
+    "hpr_naive": -0.023997,
+    "hpr_faithful": -0.02649,
+    "hpr_delta": -0.002493
+  },
+  "sale_advance_on": {
+    "fills": 58,
+    "insufficient_cash_refusals": 0,
+    "unsettled_holding_refusals": 66
+  },
+  "policy_spread": {
+    "hard": {
+      "fills": 0,
+      "evaluations": {
+        "indeterminate": 905716
+      },
+      "indeterminate_rate": 1.0
+    },
+    "probabilistic": {
+      "fills": 0,
+      "evaluations": {
+        "indeterminate": 896738,
+        "no_fill": 8978
+      },
+      "indeterminate_rate": 0.9901
+    },
+    "soft": {
+      "fills": 62,
+      "evaluations": {
+        "fill": 62,
+        "no_fill": 261588
+      },
+      "indeterminate_rate": 0.0
+    }
+  }
+}
