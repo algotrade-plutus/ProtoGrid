@@ -9,7 +9,7 @@
     "TCH",
     "POW"
   ],
-  "plutus_simulator_commit": "b62e16331e73344de1cfab9734c30cb24f2fdf58",
+  "plutus_simulator_commit": "566fda4bf27745541cb6bfa077023a60947739d8",
   "naive": {
     "fills": 136,
     "buy_fills": 75,
